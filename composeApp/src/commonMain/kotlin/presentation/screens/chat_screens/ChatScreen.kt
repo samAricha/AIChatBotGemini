@@ -21,6 +21,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
+import com.mohamedrejeb.calf.picker.FilePickerFileType
+import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
+import com.mohamedrejeb.calf.picker.rememberFilePickerLauncher
 import domain.model.ChatMessageModel
 import domain.model.ChatStatusModel
 import kotlinx.coroutines.launch
@@ -34,6 +37,8 @@ import presentation.extension.showSnackBar
 import presentation.theme.LightGreen
 import presentation.theme.LightRed
 
+
+
 @Composable
 fun ChatScreen(viewModel: ChatViewModel = ChatViewModel()) {
     val chatUiState = viewModel.uiState
@@ -42,6 +47,16 @@ fun ChatScreen(viewModel: ChatViewModel = ChatViewModel()) {
     val apiKeySnackBarHostState = remember { SnackbarHostState() }
     val errorSnackBarHostState = remember { SnackbarHostState() }
     val showDialog = remember { mutableStateOf(false) }
+
+    val pickerLauncher = rememberFilePickerLauncher(
+        type = FilePickerFileType.Image,
+        selectionMode = FilePickerSelectionMode.Multiple,
+        onResult = { files ->
+            files.firstOrNull()?.let { file ->
+//                imageSelectionViewModel.updatePickedImage(file.readByteArray())
+            }
+        }
+    )
 
     Scaffold(
         topBar = {

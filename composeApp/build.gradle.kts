@@ -53,6 +53,9 @@ kotlin {
             implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
             implementation("io.ktor:ktor-client-logging:$ktorVersion")
             implementation("com.mikepenz:multiplatform-markdown-renderer:0.10.0")
+
+            // For Adaptive FilePicker
+            implementation("com.mohamedrejeb.calf:calf-file-picker:0.3.0")
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

@@ -43,6 +43,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mohamedrejeb.calf.io.readByteArray
+import com.mohamedrejeb.calf.picker.FilePickerFileType
+import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
+import com.mohamedrejeb.calf.picker.rememberFilePickerLauncher
+import com.mohamedrejeb.calf.picker.toImageBitmap
 import domain.model.ChatStatusModel
 import presentation.theme.Gray700
 
@@ -57,28 +62,28 @@ fun CustomBottomBar(
 ) {
     val textState = remember { mutableStateOf("") }
     val images = remember { mutableStateOf(listOf<ByteArray>()) }
-
     val scope = rememberCoroutineScope()
-//    val multipleImagePicker = rememberIma(
-//        selectionMode = SelectionMode.Multiple(),
-//        scope = scope,
-//        onResult = { images.value = it }
-//    )
+
+    val pickerLauncher = rememberFilePickerLauncher(
+        type = FilePickerFileType.Image,
+        selectionMode = FilePickerSelectionMode.Multiple,
+        onResult = { images.value = it.map { kmpFile -> kmpFile.readByteArray() } }
+    )
     Column {
-//        LazyRow {
-//            items(images.value.size) { index ->
-//                val bitmap = images.value[index].toImageBitmap()
-//                ImageAttachment(
-//                    bitmap = bitmap,
-//                    onCloseClick = {
-//                        val mutableImages = images.value.toMutableList()
-//                        mutableImages.removeAt(index)
-//                        images.value = mutableImages
-//                    }
-//                )
-//
-//            }
-//        }
+        LazyRow {
+            items(images.value.size) { index ->
+                val bitmap = images.value[index].toImageBitmap()
+                ImageAttachment(
+                    bitmap = bitmap,
+                    onCloseClick = {
+                        val mutableImages = images.value.toMutableList()
+                        mutableImages.removeAt(index)
+                        images.value = mutableImages
+                    }
+                )
+
+            }
+        }
         TextField(
             value = textState.value,
             onValueChange = { textState.value = it },
@@ -134,7 +139,7 @@ fun CustomBottomBar(
             leadingIcon = {
                 IconButton(
                     onClick = {
-//                        multipleImagePicker.launch()
+                        pickerLauncher.launch()
                     },
                     content = {
                         Icon(
