@@ -37,7 +37,8 @@ kotlin {
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material)
+            implementation(compose.material3)
+            implementation(compose.materialIconsExtended)
             implementation(compose.ui)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
@@ -51,8 +52,6 @@ kotlin {
             implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
             implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
             implementation("io.ktor:ktor-client-logging:$ktorVersion")
-            implementation("io.github.team-preat:peekaboo-ui:0.3.0")
-            implementation("io.github.team-preat:peekaboo-image-picker:0.3.0")
             implementation("com.mikepenz:multiplatform-markdown-renderer:0.10.0")
         }
         desktopMain.dependencies {
