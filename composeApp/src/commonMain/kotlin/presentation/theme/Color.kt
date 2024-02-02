@@ -6,6 +6,10 @@ val Gray400 = Color(0XFFE5E6E9)
 val Gray600 = Color(0xFFC4C4C4)
 val Gray700 = Color(0XFF959595)
 
+val Cream1 = Color(0xFFedeef5)
+val Cream2 = Color(0xfff4f0ed)
+
+
 val BackgroundDark = Color(0xFF2F2F2F)
 val SurfaceDark = Color(0xFF3C3C3C)
 

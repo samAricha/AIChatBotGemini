@@ -2,8 +2,11 @@ package presentation.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -13,14 +16,13 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.filled.Send
+import androidx.compose.material.icons.outlined.ImageSearch
 import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -49,13 +51,16 @@ import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
 import com.mohamedrejeb.calf.picker.rememberFilePickerLauncher
 import com.mohamedrejeb.calf.picker.toImageBitmap
 import domain.model.ChatStatusModel
+import presentation.theme.Cream1
+import presentation.theme.Cream2
 import presentation.theme.Gray700
+import presentation.theme.SecondaryLightColor
 
 /**
  * TODO : allow sending attachments without text
  */
 @Composable
-fun CustomBottomBar(
+fun CustomBottomSearchBar(
     modifier: Modifier = Modifier,
     status: ChatStatusModel,
     onSendClick: (String, List<ByteArray>) -> Unit
@@ -84,76 +89,81 @@ fun CustomBottomBar(
 
             }
         }
-        TextField(
-            value = textState.value,
-            onValueChange = { textState.value = it },
-            maxLines = 3,
-            placeholder = {
-                Text(
-                    text = "Type a message...",
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        color = Gray700,
-                    ),
-                    textAlign = TextAlign.Center
-                )
-            },
-            colors = TextFieldDefaults.colors(
-                focusedContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                unfocusedContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                disabledContainerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-            ),
-            trailingIcon = {
-                Button(
-                    onClick = {
-                        onSendClick(textState.value, images.value)
-                        images.value = emptyList()
-                        textState.value = ""
-                    },
-                    enabled = textState.value.isNotBlank() && status != ChatStatusModel.Loading,
-                    content = {
-                        if (status is ChatStatusModel.Loading)
-                            CircularProgressIndicator(
-                                modifier = Modifier.size(20.dp),
-                                color = MaterialTheme.colorScheme.onPrimary
-                            )
-                        else {
-                            Icon(
-                                Icons.Default.ArrowForward,
-                                contentDescription = null,
-                                modifier = Modifier.rotate(-90.0F).size(20.dp),
-                            )
-                        }
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        contentColor = MaterialTheme.colorScheme.onPrimary,
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        disabledContainerColor = MaterialTheme.colorScheme.onSecondaryContainer
-                    ),
-                    shape = RoundedCornerShape(30),
-                    modifier = Modifier.padding(horizontal = 10.dp)
-                )
-            },
-            leadingIcon = {
-                IconButton(
-                    onClick = {
-                        pickerLauncher.launch()
-                    },
-                    content = {
-                        Icon(
-                            Icons.Outlined.Add,
-                            contentDescription = null,
-                            modifier = Modifier,
-                            tint = MaterialTheme.colorScheme.onSecondaryContainer
-                        )
-                    },
-                )
-            },
+        Row(
             modifier = modifier,
-            shape = RoundedCornerShape(24),
-        )
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            TextField(
+                value = textState.value,
+                onValueChange = { textState.value = it },
+                maxLines = 3,
+                placeholder = {
+                    Text(
+                        text = "Message...",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            color = Gray700,
+                        ),
+                        textAlign = TextAlign.Center
+                    )
+                },
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Cream2,
+                    unfocusedContainerColor = Cream2,
+                    disabledContainerColor = Cream2,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                ),
+                leadingIcon = {
+                    IconButton(
+                        onClick = {
+                            pickerLauncher.launch()
+                        },
+                        content = {
+                            Icon(
+                                Icons.Outlined.ImageSearch,
+                                contentDescription = null,
+                                tint = SecondaryLightColor
+                            )
+                        },
+                    )
+                },
+                shape = RoundedCornerShape(50),
+            )
+
+            IconButton(
+                modifier = Modifier.padding(5.dp),
+                onClick = {
+                    onSendClick(textState.value, images.value)
+                    images.value = emptyList()
+                    textState.value = ""
+                },
+                enabled = textState.value.isNotBlank() && status != ChatStatusModel.Loading,
+                content = {
+                    if (status is ChatStatusModel.Loading)
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(20.dp),
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
+                    else {
+                        Icon(
+                            Icons.Default.Send,
+                            contentDescription = null,
+                            modifier = Modifier.rotate(-90.0F),
+                            tint = SecondaryLightColor
+                        )
+                    }
+                },
+                colors = IconButtonDefaults.iconButtonColors(
+                    contentColor = Cream1,
+                    containerColor = Cream1,
+                    disabledContainerColor = Cream2
+                ),
+//                shape = RoundedCornerShape(50),
+            )
+
+        }
+
     }
 }
 

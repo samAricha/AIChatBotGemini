@@ -28,7 +28,7 @@ import domain.model.ChatMessageModel
 import domain.model.ChatStatusModel
 import kotlinx.coroutines.launch
 import presentation.component.CustomAppBar
-import presentation.component.CustomBottomBar
+import presentation.component.CustomBottomSearchBar
 import presentation.component.CustomDialog
 import presentation.component.CustomSnackBar
 import presentation.component.MessageBubble
@@ -63,7 +63,7 @@ fun ChatScreen(viewModel: ChatViewModel = ChatViewModel()) {
             CustomAppBar(onActionClick = { showDialog.value = true })
         },
         bottomBar = {
-            CustomBottomBar(
+            CustomBottomSearchBar(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 10.dp)

@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import presentation.theme.Cream2
 import presentation.theme.Gray400
 import presentation.theme.Gray600
 import presentation.theme.Gray700
@@ -42,14 +43,14 @@ import presentation.theme.SecondaryLightColor
 fun CustomAppBar(onActionClick: () -> Unit = {}, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
-            .background(MaterialTheme.colorScheme.background)
+            .background(Cream2)
             .fillMaxWidth()
     ) {
         TopAppBar(
             modifier = Modifier
                 .fillMaxWidth(),
             colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = MaterialTheme.colorScheme.background,
+                containerColor = Cream2,
             ),
             scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(),
             title = {
