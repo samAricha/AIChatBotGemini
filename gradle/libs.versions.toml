@@ -14,6 +14,8 @@ compose = "1.6.0"
 compose-plugin = "1.5.12"
 junit = "4.13.2"
 kotlin = "1.9.22"
+accompanist-systemUIController = "0.32.0"
+
 
 [libraries]
 #kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -28,6 +30,8 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+accompanist-systemUIController = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanist-systemUIController" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

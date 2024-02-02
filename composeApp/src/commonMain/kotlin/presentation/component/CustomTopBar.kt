@@ -23,6 +23,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -30,7 +31,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import presentation.theme.Gray400
+import presentation.theme.Gray600
 import presentation.theme.Gray700
+import presentation.theme.SecondaryLightColor
 
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
@@ -38,22 +42,24 @@ import presentation.theme.Gray700
 fun CustomAppBar(onActionClick: () -> Unit = {}, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
-            .background(MaterialTheme.colorScheme.primaryContainer)
+            .background(MaterialTheme.colorScheme.background)
             .fillMaxWidth()
     ) {
         TopAppBar(
             modifier = Modifier
-                .padding(vertical = 5.dp)
                 .fillMaxWidth(),
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = MaterialTheme.colorScheme.background,
+            ),
             scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(),
             title = {
                 Column {
                     Text(
-                        text = "ChatGemini",
+                        text = "OrganiksAiAssistant",
                         style = TextStyle(
                             fontSize = 20.sp,
                             fontWeight = FontWeight.ExtraBold,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            color = Color.Black,
                         ),
                     )
                     Text(
@@ -61,7 +67,7 @@ fun CustomAppBar(onActionClick: () -> Unit = {}, modifier: Modifier = Modifier) 
                         style = TextStyle(
                             fontSize = 13.sp,
                             fontWeight = FontWeight.Normal,
-                            color = Gray700,
+                            color = Color.Gray,
                         ),
                     )
                 }
@@ -70,7 +76,7 @@ fun CustomAppBar(onActionClick: () -> Unit = {}, modifier: Modifier = Modifier) 
                 Row {
                     Spacer(modifier = Modifier.width(10.dp))
                     Image(
-                        painter = painterResource("logo.png"),
+                        painter = painterResource("perfect100.png"),
                         contentDescription = "Compose Multiplatform icon",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
@@ -90,15 +96,11 @@ fun CustomAppBar(onActionClick: () -> Unit = {}, modifier: Modifier = Modifier) 
                         Icon(
                             Icons.Filled.Key,
                             contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                            tint = Color.Gray,
                         )
                     },
                 )
             },
-
-            colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-            )
         )
     }
 }
