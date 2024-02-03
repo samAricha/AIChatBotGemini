@@ -64,7 +64,7 @@ fun CustomAppBar(onActionClick: () -> Unit = {}, modifier: Modifier = Modifier) 
                         ),
                     )
                     Text(
-                        text = "Powered by Gemini Pro",
+                        text = "Organiks + Gemini",
                         style = TextStyle(
                             fontSize = 13.sp,
                             fontWeight = FontWeight.Normal,
@@ -78,7 +78,7 @@ fun CustomAppBar(onActionClick: () -> Unit = {}, modifier: Modifier = Modifier) 
                     Spacer(modifier = Modifier.width(10.dp))
                     Image(
                         painter = painterResource("perfect100.png"),
-                        contentDescription = "Compose Multiplatform icon",
+                        contentDescription = "Organiks Mascot",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .size(45.dp)
@@ -88,20 +88,20 @@ fun CustomAppBar(onActionClick: () -> Unit = {}, modifier: Modifier = Modifier) 
                     Spacer(modifier = Modifier.width(5.dp))
                 }
             },
-            actions = {
-                IconButton(
-                    onClick = {
-                        onActionClick()
-                    },
-                    content = {
-                        Icon(
-                            Icons.Filled.Key,
-                            contentDescription = null,
-                            tint = Color.Gray,
-                        )
-                    },
-                )
-            },
+//            actions = {
+//                IconButton(
+//                    onClick = {
+//                        onActionClick()
+//                    },
+//                    content = {
+//                        Icon(
+//                            Icons.Filled.Key,
+//                            contentDescription = null,
+//                            tint = Color.Gray,
+//                        )
+//                    },
+//                )
+//            },
         )
     }
 }

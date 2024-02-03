@@ -17,7 +17,6 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-const val BASE_URL = "https://generativelanguage.googleapis.com"
 const val TIMEOUT = 30000L
 
 @OptIn(ExperimentalSerializationApi::class, InternalAPI::class)
@@ -43,11 +42,8 @@ class GeminiService {
             level = LogLevel.ALL
         }
     }
-    // endregion
 
-    // region API key
-
-    // Enter your personal api key here
+    private val baseUrl = "https://generativelanguage.googleapis.com/v1/models"
     private var apiKey: String = ""
 
     fun getApiKey(): String {
@@ -58,23 +54,23 @@ class GeminiService {
         apiKey = key
     }
 
-    // endregion
-
-    // region API calls
     suspend fun generateContent(prompt: String): Response {
-        return makeApiRequest("$BASE_URL/v1beta/models/gemini-pro:generateContent?key=$apiKey") {
+        return makeApiRequest("$baseUrl/gemini-pro:generateContent?key=$apiKey") {
             addText(prompt)
         }
     }
 
     suspend fun generateContentWithMedia(prompt: String, images: List<ByteArray>): Response {
-        return makeApiRequest("$BASE_URL/v1beta/models/gemini-pro-vision:generateContent?key=$apiKey") {
+        return makeApiRequest("$baseUrl/gemini-pro-vision:generateContent?key=$apiKey") {
             addText(prompt)
             addImages(images)
         }
     }
 
-    private suspend fun makeApiRequest(url: String, requestBuilder: Request.RequestBuilder.() -> Unit): Response {
+    private suspend fun makeApiRequest(
+        url: String,
+        requestBuilder: Request.RequestBuilder.() -> Unit
+    ): Response {
         val request = Request.RequestBuilder().apply(requestBuilder).build()
 
         val response: String = client.post(url) {
@@ -83,7 +79,5 @@ class GeminiService {
 
         return Json.decodeFromString(response)
     }
-
-    // endregion
 
 }

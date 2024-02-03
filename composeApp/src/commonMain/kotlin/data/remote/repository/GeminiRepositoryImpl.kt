@@ -9,7 +9,10 @@ class GeminiRepositoryImpl : GeminiRepository {
 
     private val geminiService = GeminiService()
 
-    override suspend fun generate(prompt: String, images: List<ByteArray>): ChatStatusModel {
+    override suspend fun generate(
+        prompt: String,
+        images: List<ByteArray>
+    ): ChatStatusModel {
         return try {
             val response = when {
                 images.isEmpty() -> geminiService.generateContent(prompt)

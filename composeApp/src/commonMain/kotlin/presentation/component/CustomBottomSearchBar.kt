@@ -86,7 +86,6 @@ fun CustomBottomSearchBar(
                         images.value = mutableImages
                     }
                 )
-
             }
         }
         Row(
@@ -94,6 +93,8 @@ fun CustomBottomSearchBar(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             TextField(
+                modifier = Modifier
+                    .weight(1f),
                 value = textState.value,
                 onValueChange = { textState.value = it },
                 maxLines = 3,
@@ -140,26 +141,29 @@ fun CustomBottomSearchBar(
                 },
                 enabled = textState.value.isNotBlank() && status != ChatStatusModel.Loading,
                 content = {
-                    if (status is ChatStatusModel.Loading)
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(20.dp),
-                            color = MaterialTheme.colorScheme.onPrimary
-                        )
-                    else {
-                        Icon(
-                            Icons.Default.Send,
-                            contentDescription = null,
-                            modifier = Modifier.rotate(-90.0F),
-                            tint = SecondaryLightColor
-                        )
+                    var tintColor = SecondaryLightColor
+                    var iconRotation = 0F
+
+                    if (status is ChatStatusModel.Loading) {
+                        tintColor = Color.LightGray
+                        iconRotation = -90.0F
+                    } else {
+                        tintColor = SecondaryLightColor
+                        iconRotation = 0F
                     }
+
+                    Icon(
+                        Icons.Default.Send,
+                        contentDescription = null,
+                        modifier = Modifier.rotate(iconRotation),
+                        tint = tintColor,
+                    )
                 },
                 colors = IconButtonDefaults.iconButtonColors(
                     contentColor = Cream1,
                     containerColor = Cream1,
                     disabledContainerColor = Cream2
                 ),
-//                shape = RoundedCornerShape(50),
             )
 
         }

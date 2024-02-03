@@ -26,6 +26,7 @@ import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
 import com.mohamedrejeb.calf.picker.rememberFilePickerLauncher
 import domain.model.ChatMessageModel
 import domain.model.ChatStatusModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import presentation.component.CustomAppBar
 import presentation.component.CustomBottomSearchBar
@@ -37,8 +38,6 @@ import presentation.extension.showSnackBar
 import presentation.theme.LightGreen
 import presentation.theme.LightRed
 
-
-
 @Composable
 fun ChatScreen(viewModel: ChatViewModel = ChatViewModel()) {
     val chatUiState = viewModel.uiState
@@ -48,15 +47,6 @@ fun ChatScreen(viewModel: ChatViewModel = ChatViewModel()) {
     val errorSnackBarHostState = remember { SnackbarHostState() }
     val showDialog = remember { mutableStateOf(false) }
 
-    val pickerLauncher = rememberFilePickerLauncher(
-        type = FilePickerFileType.Image,
-        selectionMode = FilePickerSelectionMode.Multiple,
-        onResult = { files ->
-            files.firstOrNull()?.let { file ->
-//                imageSelectionViewModel.updatePickedImage(file.readByteArray())
-            }
-        }
-    )
 
     Scaffold(
         topBar = {
@@ -70,7 +60,7 @@ fun ChatScreen(viewModel: ChatViewModel = ChatViewModel()) {
                     .padding(bottom = 30.dp, top = 5.dp),
                 status = chatUiState.value.status,
                 onSendClick = { text, images ->
-                    coroutineScope.launch {
+                    coroutineScope.launch(Dispatchers.IO) {
                         viewModel.generateContent(text, images)
                     }
                 },
