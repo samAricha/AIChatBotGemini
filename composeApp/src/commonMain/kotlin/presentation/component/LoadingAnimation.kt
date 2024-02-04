@@ -22,12 +22,14 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
+import presentation.theme.PrimaryColor
+import presentation.theme.SecondaryColor
 
 @Composable
 fun LoadingAnimation(
     modifier: Modifier = Modifier,
     circleSize: Dp = 25.dp,
-    circleColor: Color = MaterialTheme.colorScheme.primary,
+    circleColor: Color = SecondaryColor,
     spaceBetween: Dp = 10.dp,
     travelDistance: Dp = 20.dp
 ) {

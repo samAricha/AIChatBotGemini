@@ -35,12 +35,17 @@ import com.mikepenz.markdown.compose.Markdown
 import com.mikepenz.markdown.model.markdownColor
 import domain.model.ChatMessageModel
 import presentation.theme.Gray700
+import presentation.theme.LightGreen
+import presentation.theme.PrimaryColor
+import presentation.theme.PrimaryLightColor
+import presentation.theme.SecondaryLightColor
+import presentation.theme.SecondaryLightColor2
 
 @Composable
 inline fun MessageBubble(message: ChatMessageModel, modifier: Modifier = Modifier) {
     val bubbleColor =
         if (message.isBotMessage) MaterialTheme.colorScheme.surface
-        else MaterialTheme.colorScheme.secondaryContainer
+        else SecondaryLightColor2
 
     var visibility by remember { mutableStateOf(false) }
 
@@ -85,14 +90,14 @@ inline fun MessageBubble(message: ChatMessageModel, modifier: Modifier = Modifie
                                 fontSize = 14.sp,
                                 textAlign = TextAlign.Left,
                                 color = if (message.isBotMessage) MaterialTheme.colorScheme.secondary
-                                else MaterialTheme.colorScheme.primary,
+                                else PrimaryColor,
                             )
                             if (message.isBotMessage && message.isLoading) {
                                 LoadingAnimation(
                                     circleSize = 8.dp,
                                     spaceBetween = 5.dp,
                                     travelDistance = 10.dp,
-                                    circleColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.7f),
+                                    circleColor = SecondaryLightColor,
                                     modifier = Modifier.padding(top = 14.dp)
                                 )
                             } else {

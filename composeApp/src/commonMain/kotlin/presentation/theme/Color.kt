@@ -19,10 +19,11 @@ val LightGreen = Color(0xFF57C84D)
 
 
 val PrimaryColor = Color(0x998B4513)
-val PrimaryLightColor = PrimaryColor.copy(alpha = 0.75f)
+val PrimaryLightColor = PrimaryColor.copy(alpha = 0.7f)
 
 val SecondaryColor = Color(0xFF336633)
-val SecondaryLightColor = SecondaryColor.copy(alpha = 0.75f)
+val SecondaryLightColor = SecondaryColor.copy(alpha = 0.7f)
+val SecondaryLightColor2 = SecondaryColor.copy(alpha = 0.05f)
 
 val PrimaryTextColor = Color(0xffffffff)
 val SecondaryTextColor = Color(0xff000000)
