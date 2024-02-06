@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.mohamedrejeb.calf.picker.toImageBitmap
 import domain.model.ChatMessageModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -81,14 +82,14 @@ fun MessageImagesStack(
                 cardCount = message.images.size,
                 cardShape = RoundedCornerShape(20.dp),
                 cardContent = { index ->
-//                    Image(
-//                        bitmap = message.images[index].toImageBitmap(),
-//                        contentDescription = "Same Card Type with Different Image",
-//                        contentScale = ContentScale.Crop,
-//                        modifier = Modifier
-//                            .heightIn(100.dp, 300.dp)
-//                            .widthIn(50.dp, 200.dp)
-//                    )
+                    Image(
+                        bitmap = message.images[index].toImageBitmap(),
+                        contentDescription = "Same Card Type with Different Image",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .heightIn(100.dp, 300.dp)
+                            .widthIn(50.dp, 200.dp)
+                    )
                 },
                 orientation = Orientation.Horizontal(
                     alignment = HorizontalAlignment.EndToStart,
