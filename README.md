@@ -22,11 +22,11 @@ You can get Gemini API Docs here [Gemini API Docs](https://ai.google.dev/docs)
 
 ## Screenshots
 ### Android
-<img src="art/img1.jpeg"  width="250"/>
-<img src="art/img2.jpeg"  width="250"/>
-<img src="art/img3.jpeg" width="250"/>
-<img src="art/img4.jpeg" width="250"/>
-<img src="art/img5.jpeg" width="250"/>
+<img src="art/img1.jpeg"  width="200"/>
+<img src="art/img2.jpeg"  width="200"/>
+<img src="art/img3.jpeg" width="200"/>
+<img src="art/img4.jpeg" width="200"/>
+<img src="art/img5.jpeg" width="200"/>
 
 ## Architecture
 The app is shared between Android, Desktop with Compose Multiplatform and Server with Ktor within the same project.
